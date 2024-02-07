@@ -1,8 +1,6 @@
 // The starting point of the application
-// This is where the root component of the application - App - is rendered to the DOM. 
+// This is where the root component of the application - App - is rendered to the DOM.
 // You can add new components to the /client/src/components folder and new test files to the /client/src/tests folder.
-
-// const root = document.getElementById('root');
 import React from "react";
 import App from "./components/App";
 import ReactDOM from "react-dom/client";
