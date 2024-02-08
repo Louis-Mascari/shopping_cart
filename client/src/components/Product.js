@@ -2,6 +2,7 @@ import { useState } from "react";
 import EditForm from "./EditForm";
 
 const Product = ({ product }) => {
+  let id = product.id;
   let title = product.title;
   let price = product.price;
   let quantity = product.quantity;
@@ -27,7 +28,7 @@ const Product = ({ product }) => {
         </button>
       </div>
       {editVisible ? (
-        <EditForm title={title} price={price} quantity={quantity}/>
+        <EditForm id={id} title={title} price={price} quantity={quantity} />
       ) : null}
     </li>
   );

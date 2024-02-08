@@ -1,11 +1,27 @@
+import { useState } from "react";
+
 const AddProductForm = () => {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+
+  const handleSubmit = () => {
+    console.log("submitting...");
+  };
+
   return (
     <>
       <h3>Add Product</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="input-group">
           <label for="product-name">Product Name:</label>
-          <input type="text" id="product-name" name="product-name" required />
+          <input
+            type="text"
+            id="product-name"
+            name="product-name"
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </div>
         <div className="input-group">
           <label for="product-price">Price:</label>
