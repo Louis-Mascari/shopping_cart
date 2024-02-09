@@ -1,11 +1,15 @@
 import { useState } from "react";
 import AddProductForm from "./AddProductForm";
 
-const AddForm = () => {
+const AddForm = ({ onSubmit }) => {
   //make 'Add Product' button toggle the 'AddProductForm'
   // need to track state representing visibility of appproductform
   // button always visible
   const [formVisible, setFormVisible] = useState(false);
+
+  const handleCancel = () => {
+    setFormVisible(false);
+  };
 
   return (
     <div className="add-form">
@@ -17,7 +21,9 @@ const AddForm = () => {
           Add A Product
         </button>
       </p>
-      {formVisible ? <AddProductForm /> : null}
+      {formVisible ? (
+        <AddProductForm onSubmit={onSubmit} onCancel={handleCancel} />
+      ) : null}
     </div>
   );
 };

@@ -1,13 +1,31 @@
 import { useState } from "react";
 
-const AddProductForm = () => {
-  const [name, setName] = useState("");
+const AddProductForm = ({ onSubmit, onCancel }) => {
+  const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  const handleSubmit = () => {
-    console.log("submitting...");
+  const reset = () => {
+    setTitle("");
+    setPrice("");
+    setQuantity("");
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newProduct = {
+      title,
+      price,
+      quantity,
+    };
+
+    onSubmit(newProduct, reset);
+  };
+
+  const handleCancel = () => {
+    onCancel();
+  }
 
   return (
     <>
@@ -19,7 +37,8 @@ const AddProductForm = () => {
             type="text"
             id="product-name"
             name="product-name"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
             required
           />
         </div>
@@ -32,6 +51,8 @@ const AddProductForm = () => {
             min="0"
             step="0.01"
             required
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <div className="input-group">
@@ -42,11 +63,13 @@ const AddProductForm = () => {
             name="product-quantity"
             min="0"
             required
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
         <div className="actions form-actions">
           <button type="submit">Add</button>
-          <button type="button">Cancel</button>
+          <button type="button" onClick={handleCancel}>Cancel</button>
         </div>
       </form>
     </>

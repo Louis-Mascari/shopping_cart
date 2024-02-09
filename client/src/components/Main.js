@@ -1,29 +1,11 @@
 import ProductListing from "./ProductListing";
 import AddForm from "./AddForm";
-import { getProducts } from "../services/api";
-import { useState, useEffect } from "react";
 
-const Main = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await getProducts();
-        console.log(data);
-        setProducts(data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    fetchProducts();
-  }, []);
-
-  console.log(products);
+const Main = ({ products, onSubmit, onDelete }) => {
   return (
     <>
-      <ProductListing products={products} />
-      <AddForm />
+      <ProductListing products={products} onDelete={onDelete} />
+      <AddForm onSubmit={onSubmit} />
     </>
   );
 };
