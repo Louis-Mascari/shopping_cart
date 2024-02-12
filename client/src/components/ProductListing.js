@@ -12,9 +12,9 @@ const ProductListing = ({
   console.log(products);
 
   return (
-    <div class="product-listing">
+    <div className="product-listing">
       <h2>Products</h2>
-      <ul class="product-list">
+      <ul className="product-list">
         {products.map((product) => {
           return (
             <Product
