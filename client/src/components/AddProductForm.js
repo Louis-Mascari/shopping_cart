@@ -25,7 +25,7 @@ const AddProductForm = ({ onSubmit, onCancel }) => {
 
   const handleCancel = () => {
     onCancel();
-  }
+  };
 
   return (
     <>
@@ -69,7 +69,9 @@ const AddProductForm = ({ onSubmit, onCancel }) => {
         </div>
         <div className="actions form-actions">
           <button type="submit">Add</button>
-          <button type="button" onClick={handleCancel}>Cancel</button>
+          <button type="button" onClick={handleCancel}>
+            Cancel
+          </button>
         </div>
       </form>
     </>

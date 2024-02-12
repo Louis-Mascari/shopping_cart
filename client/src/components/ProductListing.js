@@ -1,7 +1,14 @@
 import Product from "./Product";
 // import data from "../../mockData/data";
 
-const ProductListing = ({ products, onDelete }) => {
+const ProductListing = ({
+  products,
+  onDelete,
+  onEdit,
+  // cartItems,
+  // setCartItems,
+  onAddToCart,
+}) => {
   console.log(products);
 
   return (
@@ -10,7 +17,15 @@ const ProductListing = ({ products, onDelete }) => {
       <ul class="product-list">
         {products.map((product) => {
           return (
-            <Product key={product._id} product={product} onDelete={onDelete} />
+            <Product
+              key={product._id}
+              product={product}
+              onDelete={onDelete}
+              onEdit={onEdit}
+              // cartItems={cartItems}
+              // setCartItems={setCartItems}
+              onAddToCart={onAddToCart}
+            />
           );
         })}
       </ul>

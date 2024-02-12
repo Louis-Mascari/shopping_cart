@@ -1,25 +1,48 @@
 import { useState } from "react";
 import api from "../services/api";
 
-const EditForm = ({ id, title, price, quantity }) => {
+const EditForm = ({
+  id,
+  title,
+  price,
+  quantity,
+  onEdit,
+  onCancel,
+  setEditVisible,
+}) => {
   const [productName, setProductName] = useState(title);
   const [productPrice, setProductPrice] = useState(price);
   const [productQuantity, setProductQuantity] = useState(quantity);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const updatedProduct = { id, productName, productPrice, productQuantity };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const updatedProduct = { id, productName, productPrice, productQuantity };
+    console.log(updatedProduct);
+  };
 
-  //   try {
-  //     const data = await createComment(newComment);
-  //     setComments(comments.concat(data));
-  //     if (callback) {
-  //       callback();
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // }
+  const handleEdit = (e) => {
+    e.preventDefault();
+
+    const editedProduct = {
+      _id: id,
+      title: productName,
+      price: productPrice,
+      quantity: productQuantity,
+    };
+
+    onEdit(editedProduct, reset);
+    setEditVisible(false);
+  };
+
+  const reset = () => {
+    setProductName("");
+    setProductPrice("");
+    setProductQuantity("");
+  };
+
+  const handleCancel = () => {
+    onCancel();
+  };
 
   return (
     <div className="edit-form">
@@ -59,8 +82,12 @@ const EditForm = ({ id, title, price, quantity }) => {
         </div>
 
         <div className="actions form-actions">
-          <button type="submit">Update</button>
-          <button type="button">Cancel</button>
+          <button type="submit" onClick={handleEdit}>
+            Update
+          </button>
+          <button type="button" onClick={handleCancel}>
+            Cancel
+          </button>
         </div>
       </form>
     </div>
